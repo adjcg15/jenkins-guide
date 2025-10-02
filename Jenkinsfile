@@ -25,7 +25,7 @@ pipeline {
 
   post {
     always {
-      echo 'Finalizando ejecución del pipeline...'
+      echo 'Finalizando ejecución del pipeline con Polling!'
     }
   }
 }
