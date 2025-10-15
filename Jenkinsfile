@@ -9,9 +9,7 @@ pipeline {
     
     stage('Checkout') {
         steps {
-            git branch: 'checkout-scm-pipeline', 
-            credentialsId: 'github-credential', 
-            url: 'https://github.com/adjcg15/jenkins-guide.git'
+            checkout scm
         }
     }
 
