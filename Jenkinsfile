@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   tools {
-    tool name: 'Maven3', type: 'maven'
+     name: 'Maven3', type: 'maven'
   }
 
   //environment {}
