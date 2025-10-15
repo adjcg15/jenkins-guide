@@ -1,9 +1,7 @@
 pipeline {
   agent any
 
-  tools {
-     name: 'Maven3', type: 'maven'
-  }
+  //tools {}
 
   //environment {}
 
@@ -19,7 +17,7 @@ pipeline {
     stage('Build') {
       steps {       
         withMaven(maven: 'Maven3', traceability: true) {
-          sh 'mvn clean install'
+          sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml clean install'
         }        
         echo 'Compilación finalizada!!'
       }
