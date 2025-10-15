@@ -6,14 +6,15 @@ pipeline {
   //environment {}
 
   stages {
+    
     stage('Checkout') {
         steps {
-            // Clonación manual del repositorio desde GitHub
-            git branch: 'checkout-scm-pipeline',
-                url: 'https://github.com/adjcg15/jenkins-guide.git',
-                credentialsId: 'github-credential'
+            git branch: 'checkout-scm-pipeline', 
+            credentialsId: 'github-credential', 
+            url: 'https://github.com/adjcg15/jenkins-guide.git'
         }
     }
+
     stage('Build') {
       steps {
         echo 'Compilando la aplicación...'
