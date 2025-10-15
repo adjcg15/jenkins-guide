@@ -1,7 +1,9 @@
 pipeline {
   agent any
 
-  //tools {}
+  tools {
+    tool name: 'Maven3', type: 'maven'
+  }
 
   //environment {}
 
@@ -10,17 +12,15 @@ pipeline {
     stage('Checkout') {
         steps {
             checkout scm
+            echo 'Repositorio clonado correctamente!!'
         }
     }
 
     stage('Build') {
-      steps {
-        echo 'Compilando la aplicación...'
-        steps {
-          withMaven(maven: 'Maven3', traceability: true) {
-            sh 'mvn clean install'
-          }
-        }
+      steps {       
+        withMaven(maven: 'Maven3', traceability: true) {
+          sh 'mvn clean install'
+        }        
         echo 'Compilación finalizada!!'
       }
     }
@@ -34,7 +34,7 @@ pipeline {
         echo 'Desplegando la aplicación...'
       }
     }
-  }
+}
 
   post {
     always {
