@@ -18,7 +18,6 @@ pipeline {
       steps {       
         withMaven(maven: 'Maven3', traceability: true) {
           sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml clean install'
-          sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml spring-boot:run'
         }        
         echo 'Compilación finalizada!!'
       }
