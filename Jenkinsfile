@@ -18,6 +18,12 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Compilando la aplicación...'
+        steps {
+          withMaven(maven: 'Maven3', traceability: true) {
+            sh 'mvn clean install'
+          }
+        }
+        echo 'Compilación finalizada!!'
       }
     }
     stage('Test') {
