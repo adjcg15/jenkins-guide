@@ -1,7 +1,10 @@
 pipeline {
   agent any
 
-  //tools {}
+  tools {
+    git 'Git_AutoInst'
+    maven 'Maven3'
+  }
 
   //environment {}
 
@@ -16,17 +19,17 @@ pipeline {
 
     stage('Build') {
       steps {       
-        withMaven(maven: 'Maven3', traceability: true) {
-          sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml clean install'
-        }        
+        sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml clean install'       
         echo 'Compilación finalizada!!'
       }
     }
+
     stage('Test') {
       steps {
         echo 'Ejecutando pruebas...'
       }
     }
+    
     stage('Deploy') {
       steps {
         echo 'Desplegando la aplicación...'
