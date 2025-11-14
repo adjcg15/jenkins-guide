@@ -1,9 +1,7 @@
 pipeline {
   agent any
 
-  tools {
-    git 'Git_AutoInst'
-  }
+  //tools {}
 
   //environment {}
 
