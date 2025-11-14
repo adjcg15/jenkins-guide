@@ -2,7 +2,6 @@ pipeline {
   agent any
 
   tools {
-    git 'Git_AutoInst'
     maven 'Maven3'
   }
 
@@ -26,6 +25,7 @@ pipeline {
 
     stage('Test') {
       steps {
+        sh 'mvn clean test'  
         echo 'Ejecutando pruebas...'
       }
     }
