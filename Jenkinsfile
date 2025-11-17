@@ -8,12 +8,11 @@ pipeline {
   //environment {}
 
   stages {
-    
     stage('Checkout') {
-        steps {
-            checkout scm
-            echo 'Repositorio clonado correctamente!!'
-        }
+      steps {
+        checkout scm
+        echo 'Repositorio clonado correctamente!!'
+      }
     }
 
     stage('Build') {
