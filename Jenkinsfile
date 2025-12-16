@@ -24,7 +24,7 @@ pipeline {
 
     stage('Unit tests') {
       steps {
-        sh 'mvn clean test'
+        sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml clean test'
       }
     }
     
