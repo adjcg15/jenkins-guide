@@ -22,9 +22,9 @@ pipeline {
       }
     }
 
-    stage('Test') {
+    stage('Unit tests') {
       steps {
-        echo 'Ejecutando pruebas...'
+        sh 'mvn clean test'
       }
     }
     
@@ -37,12 +37,8 @@ pipeline {
 
   post {
     always {
-      echo 'Finalizando ejecución del pipeline con Polling!'
+      junit '**/target/surefire-reports/*.xml'
+      echo 'Finalizando ejecución del pipeline con pruebas!'
     }
   }
 }
-
-
-
-
-
