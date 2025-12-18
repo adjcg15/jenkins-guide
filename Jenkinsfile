@@ -32,10 +32,13 @@ pipeline {
     stage('Integration tests') {
       steps {
         sh '''
+          set -e
+
           echo "Starting Spring Boot app..."
-          mvn -f Jenkins-Guide_To-Do-List/pom.xml springerboot:run &
+          mvn -f Jenkins-Guide_To-Do-List/pom.xml spring-boot:run &
           APP_PID=$!
-          trap "kill $APP_PID" EXIT
+
+          trap "echo Stopping Spring Boot...; kill $APP_PID || true" EXIT
 
           echo "Waiting for app to start..."
           sleep 15
@@ -44,10 +47,8 @@ pipeline {
           newman run Jenkins-Guide_To-Do-List/to_do_app_api_tests.postman_collection.json \
             --disable-unicode \
             --color off \
-            -r htmlextra --reporter-html-export Jenkins-Guide_To-Do-List/target/integration-tests-report.html
-            
-          echo "Stopping Spring Boot app (PID=$APP_PID)..."
-          kill $APP_PID
+            -r htmlextra \
+            --reporter-html-export Jenkins-Guide_To-Do-List/target/integration-tests-report.html
         '''
       }
     }
