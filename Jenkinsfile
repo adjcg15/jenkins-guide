@@ -40,16 +40,12 @@ pipeline {
           echo "Waiting for app to start..."
           sleep 15
 
-          node -v
-          npm -v
-          newman -v
-
           echo "Running Postman integration tests..."
           newman run Jenkins-Guide_To-Do-List/to_do_app_api_tests.postman_collection.json \
-            --disable-unicode --no-color \
-            --reporters cli,html \
-            --reporter-html-export Jenkins-Guide_To-Do-List/target/integration-tests-report.html
-
+            --disable-unicode \
+            --color off \
+            -r htmlextra --reporter-html-export Jenkins-Guide_To-Do-List/target/integration-tests-report.html
+            
           echo "Stopping Spring Boot app (PID=$APP_PID)..."
           kill $APP_PID
         '''
