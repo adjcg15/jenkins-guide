@@ -43,7 +43,7 @@ pipeline {
           newman run Jenkins-Guide_To-Do-List/to_do_app_api_tests.postman_collection.json \
             --disable-unicode --no-color \
             --reporters cli,html \
-            --reporter-html-export Jenkins-Guide_To-Do-List/target/postman/integration-tests-report.html
+            --reporter-html-export Jenkins-Guide_To-Do-List/target/integration-tests-report.html
 
           echo "Stopping Spring Boot app (PID=$APP_PID)..."
           kill $APP_PID
@@ -63,7 +63,7 @@ pipeline {
       junit '**/target/surefire-reports/*.xml'
 
       publishHTML(target: [
-        reportDir: 'Jenkins-Guide_To-Do-List/target/postman',
+        reportDir: 'Jenkins-Guide_To-Do-List/target',
         reportFiles: 'integration-tests-report.html',
         reportName: 'Newman Integration Tests Report'
       ])
