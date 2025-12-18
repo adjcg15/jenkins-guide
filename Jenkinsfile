@@ -3,6 +3,7 @@ pipeline {
 
   tools {
     maven 'Maven3'
+    nodejs 'v24.12.0'
   }
 
   //environment {}
@@ -38,6 +39,10 @@ pipeline {
 
           echo "Waiting for app to start..."
           sleep 15
+
+          node -v
+          npm -v
+          newman -v
 
           echo "Running Postman integration tests..."
           newman run Jenkins-Guide_To-Do-List/to_do_app_api_tests.postman_collection.json \
