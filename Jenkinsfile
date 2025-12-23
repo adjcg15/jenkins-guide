@@ -48,7 +48,7 @@ pipeline {
             --disable-unicode \
             --color off \
             -r htmlextra \
-            --reporter-html-export Jenkins-Guide_To-Do-List/target/integration-tests-report.html
+            --reporter-htmlextra-export Jenkins-Guide_To-Do-List/target/integration-tests-report.html
         '''
       }
     }
