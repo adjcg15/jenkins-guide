@@ -67,7 +67,9 @@ pipeline {
       publishHTML(target: [
         reportDir: 'Jenkins-Guide_To-Do-List/target',
         reportFiles: 'integration-tests-report.html',
-        reportName: 'Newman Integration Tests Report'
+        reportName: 'Newman Integration Tests Report',
+        alwaysLinkToLastBuild: true,
+        keepAll: true
       ])
       
       echo 'Finalizando ejecución del pipeline con pruebas!'
