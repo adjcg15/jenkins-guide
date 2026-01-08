@@ -55,7 +55,7 @@ pipeline {
 
     stage('Package') {
       steps {       
-        sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml clean package'       
+        sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml clean package -DskipTests'       
         echo 'JAR generado correctamente!!'
       }
     }
@@ -65,7 +65,7 @@ pipeline {
       steps {
         script {
           dir('Jenkins-Guide_To-Do-List') {
-                dockerImage = docker.build("tristanstgo/todolist-app")
+                def dockerImage = docker.build("tristanstgo/todolist-app")
                 docker.withRegistry('https://index.docker.io/v1/', 'docker_credential') {
                               dockerImage.push() }
             }          
