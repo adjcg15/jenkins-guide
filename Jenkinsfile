@@ -65,7 +65,7 @@ pipeline {
       steps {
         script {
           dir('Jenkins-Guide_To-Do-List') {
-                dockerImage = docker.build("todolist-app")
+                dockerImage = docker.build("tristanstgo/todolist-app")
                 docker.withRegistry('https://index.docker.io/v1/', 'docker_credential') {
                               dockerImage.push() }
             }          
