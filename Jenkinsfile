@@ -52,7 +52,18 @@ pipeline {
         '''
       }
     }
-    
+
+    stage('Create Docker image'){
+      steps {
+        script {
+          dir('Jenkins-Guide_To-Do-List') {
+                dockerImage = docker.build("todolist-app")
+                docker.withRegistry('https://index.docker.io/v1/', 'docker_credential') {
+                              dockerImage.push() }
+            }          
+        }
+      }
+    }    
     stage('Deploy') {
       steps {
         echo 'Desplegando la aplicación...'
