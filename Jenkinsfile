@@ -18,7 +18,7 @@ pipeline {
 
     stage('Build') {
       steps {       
-        sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml clean install'       
+        sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml clean compile'       
         echo 'Compilación finalizada!!'
       }
     }
@@ -52,6 +52,14 @@ pipeline {
         '''
       }
     }
+
+    stage('Package') {
+      steps {       
+        sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml clean package'       
+        echo 'JAR generado correctamente!!'
+      }
+    }
+    
 
     stage('Create Docker image'){
       steps {
