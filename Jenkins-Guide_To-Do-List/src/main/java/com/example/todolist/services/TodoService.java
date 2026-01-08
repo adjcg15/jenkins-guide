@@ -16,7 +16,7 @@ public class TodoService {
     private final ObjectMapper mapper = new ObjectMapper();
 
     public TodoService() {
-        this.filePath = "/data/to_do.json";
+        this.filePath = "data/to_do.json";
     }
 
     public TodoService(String filePath) {
