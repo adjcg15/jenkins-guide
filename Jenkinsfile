@@ -18,7 +18,7 @@ pipeline {
 
     stage('Build') {
       steps {       
-        sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml clean compile'       
+        sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml clean install'       
         echo 'Compilación finalizada!!'
       }
     }
