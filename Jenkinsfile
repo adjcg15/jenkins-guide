@@ -55,7 +55,7 @@ pipeline {
 
     stage('Package') {
       steps {       
-        sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml clean package -DskipTests'       
+        sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml package -DskipTests'       
         echo 'JAR generado correctamente!!'
       }
     }
