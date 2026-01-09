@@ -74,6 +74,9 @@ pipeline {
     }    
     stage('Deploy') {
       steps {
+        dir('Jenkins-Guide_To-Do-List'){
+          sh 'docker compose up -d' 
+        }
         echo 'Desplegando la aplicación...'
       }
     }
