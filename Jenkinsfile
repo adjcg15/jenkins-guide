@@ -75,18 +75,17 @@ pipeline {
       }
     }    
     stage('Deploy') {
-      def remote = [
-        name: 'SSHWin',
-        host: '192.168.1.71',
-        allowAnyHosts: true
-      ]
-
       environment {
         SSH_KEYS = credentials('ssh_credentials')
       }    
 
       steps {
         script {
+          def remote = [
+            name: 'SSHWin',
+            host: '192.168.1.71',
+            allowAnyHosts: true
+          ]
           remote.user=env.SSH_KEYS_USR
           remote.password=env.SSH_KEYS_PSW
         }
