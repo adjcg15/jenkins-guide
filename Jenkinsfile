@@ -88,7 +88,7 @@ pipeline {
           ]
           remote.user=env.SSH_KEYS_USR
           remote.password=env.SSH_KEYS_PSW       
-         sshCommand remote: remote, command: '''
+         sshCommand (remote: remote, command: '''
             cmd /c "
             cd C:\\deploy\\Jenkins-Guide_To-Do-List ^
             && echo Descargando docker-compose.yml ^
