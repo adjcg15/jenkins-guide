@@ -88,12 +88,16 @@ pipeline {
           ]
           remote.user=env.SSH_KEYS_USR
           remote.password=env.SSH_KEYS_PSW       
-          sshCommand(remote: remote,command: '''
-            cd C:/deploy/Jenkins-Guide_To-Do-List
-            curl -o docker-compose.yml https://raw.githubusercontent.com/adjcg15/jenkins-guide/deployment-pipeline/Jenkins-Guide_To-Do-List/docker-compose.yml
-            docker compose up -d
-            docker compose ps
-          '''
+         sshCommand remote: remote, command: '''
+            cmd /c "
+            cd C:\\deploy\\Jenkins-Guide_To-Do-List ^
+            && echo Descargando docker-compose.yml ^
+            && curl -L -o docker-compose.yml https://raw.githubusercontent.com/adjcg15/jenkins-guide/deployment-pipeline/Jenkins-Guide_To-Do-List/docker-compose.yml ^
+            && echo Levantando contenedores ^
+            && docker compose up -d ^
+            && docker compose ps
+            "
+            '''
           )
           sleep 15 
         }
