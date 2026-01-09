@@ -75,13 +75,30 @@ pipeline {
       }
     }    
     stage('Deploy') {
-      steps {
-        dir('Jenkins-Guide_To-Do-List'){
-          sh 'docker compose up -d' 
-          sleep 15
-          sh 'docker compose ps'
+      def remote = [
+        name: 'SSHWin',
+        host: '192.168.1.71',
+        allowAnyHosts: true
+      ]
 
+      environment {
+        SSH_KEYS = credentials('ssh_credentials')
+      }    
+
+      steps {
+        script {
+          remote.user=env.SSH_KEYS_USR
+          remote.password=env.SSH_KEYS_PSW
         }
+
+        sshCommand(remote: remote,command: '''
+          cd C:/deploy/Jenkins-Guide_To-Do-List
+          curl -o docker-compose.yml https://raw.githubusercontent.com/adjcg15/jenkins-guide/deployment-pipeline/Jenkins-Guide_To-Do-List/docker-compose.yml
+          docker compose up -d
+          docker compose ps
+        '''
+        )
+        sleep 15 
         echo 'Aplicación desplegada en la dirección localhost:8081'
       }
     }
