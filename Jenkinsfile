@@ -26,6 +26,7 @@ pipeline {
     stage('Unit tests') {
       steps {
         sh 'mvn -f Jenkins-Guide_To-Do-List/pom.xml clean test'
+        echo 'Pruebas unitarias finalizadas!!'
       }
     }
 
@@ -70,14 +71,18 @@ pipeline {
                               dockerImage.push() }
             }          
         }
+        echo 'Imagen de Docker creada y publicada en DockerHub'
       }
     }    
     stage('Deploy') {
       steps {
         dir('Jenkins-Guide_To-Do-List'){
           sh 'docker compose up -d' 
+          sleep 15
+          sh 'docker compose ps'
+
         }
-        echo 'Desplegando la aplicación...'
+        echo 'Aplicación desplegada en la dirección localhost:8081'
       }
     }
 }
@@ -94,7 +99,7 @@ pipeline {
         keepAll: true
       ])
       
-      echo 'Finalizando ejecución del pipeline con pruebas!'
+      echo 'Finalizando ejecución del pipeline!'
     }
   }
 }
