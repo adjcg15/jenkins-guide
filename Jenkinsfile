@@ -88,7 +88,7 @@ pipeline {
           ]
           remote.user=env.SSH_KEYS_USR
           remote.password=env.SSH_KEYS_PSW       
-          sshCommand (remote: remote, command:"cd /d C:\deploy\todolist && curl -L -o docker-compose.yml https://raw.githubusercontent.com/adjcg15/jenkins-guide/deployment-pipeline/XXXX/docker-compose.yml")
+          sshCommand (remote: remote, command:"cd /d C:\\deploy\\todolist && curl -L -o docker-compose.yml https://raw.githubusercontent.com/adjcg15/jenkins-guide/deployment-pipeline/XXXX/docker-compose.yml")
             sleep 15 
         }
         echo 'Aplicación desplegada en la dirección localhost:8081'
