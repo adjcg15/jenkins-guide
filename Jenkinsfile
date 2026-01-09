@@ -73,12 +73,12 @@ pipeline {
         }
         echo 'Imagen de Docker creada y publicada en DockerHub'
       }
-    }    
+    }   
+    
     stage('Deploy') {
       environment {
         SSH_KEYS = credentials('ssh_credentials')
-      }    
-
+      }  
       steps {
         script {
           def remote = [
@@ -94,6 +94,7 @@ pipeline {
         echo 'Aplicación desplegada en la dirección localhost:8081'
       }
     }
+    
 }
 
   post {
