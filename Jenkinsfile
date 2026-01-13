@@ -98,23 +98,18 @@ pipeline {
 }
 
   post {
-    always {
-      stages{
-        stage('Export Test Reports'){
-          junit '**/target/surefire-reports/*.xml'
-
-          publishHTML(target: [
-            reportDir: 'Jenkins-Guide_To-Do-List/target',
-            reportFiles: 'integration-tests-report.html',
-            reportName: 'Newman Integration Tests Report',
-            alwaysLinkToLastBuild: true,
-            keepAll: true
-          ])
-        }
-        stage('Clean Wokrspace'){
-          cleanWs()
-        }
-      }  
+    always {      
+      junit '**/target/surefire-reports/*.xml'
+      publishHTML(target: [
+        reportDir: 'Jenkins-Guide_To-Do-List/target',
+        reportFiles: 'integration-tests-report.html',
+        reportName: 'Newman Integration Tests Report',
+        alwaysLinkToLastBuild: true,
+        keepAll: true
+      ])
+    
+      cleanWs()       
+       
       echo 'Finalizando ejecución del pipeline!'
     }
   }
